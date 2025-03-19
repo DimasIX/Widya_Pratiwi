@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="jpg" 
+    href="Wiwi.jpg">
+    <style>
+        body {
+            text-align: center;
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        h3 {
+            font-size: 1.5em;
+            color: #e91e63;
+            margin-top: 5%;
+            position:relative;
+            z-index: 2;
+        }
+        h2 {
+            font-size: 3em;
+            color: #e91e63;
+            margin-top: 20%;
+            position: relative;
+            z-index: 2;
+        }
+        p {
+            font-size: 1.5em;
+            color: #880e4f;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background-color: red;
+            border-radius: 50%;
+            bottom: -100px;
+            opacity: 0.7;
+            animation: rise 6s linear infinite;
+        }
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Klik untuk Kejutan!</h2>
+ <button class="button" onclick="startSurprise()">
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <div class="front">
+    <span>Klik disini</span>
+  </div>
+</button>
+<div>
+  <img class="img-keroppi" src="keroppi.png"/>
+</div>
+    <script>
+    function startSurprise() {
+        document.body.innerHTML = `
+            <h3>🎉Selamat Ulang Tahun!🎂</h3>
+            <img class="eoppy-img" src="eoppy.jpg" />
+            <h3>Widya Pratiwi</h3>
+            <p>Semoga panjang umur dan sehat selalu! 🎈</p>
+            <p>Semoga semua impianmu tercapai! 🌟</p>
+            <p>Semoga sehat selalu, dimudahkan rezekinya dan semoga sukses selalu!🎊</p>
+            <p>Tetaplah bahagia dan sukses selalu! 💖</p>
+            <p>Semoga tahun ini membawa lebih banyak kebahagiaan! 🎁</p>
+        `;
+        let audio = new Audio('ssstik.io_1741454631739.mp3');
+        audio.loop = true;
+        audio.play();
+        confetti();
+        generateBalloons();
+    }
+    
+    function confetti() {
+        let count = 200;
+        let defaults = { origin: { y: 0.6 } };
+        function fire(particleRatio, opts) {
+            confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio)
+            }));
+        }
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }
+    
+    function generateBalloons() {
+        for (let i = 0; i < 20; i++) {
+            let balloon = document.createElement("div");
+            balloon.className = "balloon";
+            balloon.style.left = Math.random() * 100 + "vw";
+            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(balloon);
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.1"></script>
+
+</body>
+</html>
